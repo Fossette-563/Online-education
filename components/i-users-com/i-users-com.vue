@@ -15,13 +15,31 @@
 				<view class="flex">
 					<text style="font-size: 22px;margin-bottom: 26px;color: #35404b;">{{type===true?'登 录':'注 册'}}</text>
 				</view>
+
 				<!-- 输入框 -->
-				<i-login-from :type="type"></i-login-from>
+				<view class="login-from">
+					<uni-icons type="person" size="15" style="margin-left: 33rpx;"></uni-icons>
+					<input placeholder="请输入用户名" v-model="from.username"
+						style="background-color: #f5f5f5;margin-left: 35rpx;height: 100%;width: 100%;font-size: 35rpx;" />
+				</view>
+				<view class="login-from">
+					<uni-icons type="locked" size="15" style="margin-left: 33rpx;"></uni-icons>
+					<input placeholder="请输入密码" type="text" v-model="from.password"
+						style="background-color: #f5f5f5;margin-left: 35rpx;height: 100%;width: 100%;font-size: 35rpx;" />
+				</view>
+				<view class="login-from" v-if="type===false">
+					<uni-icons type="locked" size="15" style="margin-left: 33rpx;"></uni-icons>
+					<input placeholder="请输入确认密码" type="text" v-model="from.repassword"
+						style="background-color: #f5f5f5;margin-left: 35rpx;height: 100%;width: 100%;font-size: 35rpx;" />
+				</view>
+
 				<!-- 登录按钮 -->
-				<button class="login-button" @click="handleEnter">{{type===true?'登 录':'注 册'}}</button>
+				<button class="login-button"
+					@click="type===true?handleEnter(from):regUser(from)">{{type===true?'登 录':'注 册'}}</button>
 				<!-- 注册登录字 -->
 				<view class="login-font">
-					<text style="color: #5ccc84;">注册账号</text>
+					<text style="color: #5ccc84;"
+						@click="type===true?Enroll(type):goLogin(type)">{{type===true?'注册账号':'去登录'}}</text>
 					<text style="color: #a9a5a0;">忘记密码?</text>
 				</view>
 				<!-- 图标 -->
@@ -66,6 +84,10 @@
 			type: {
 				type: Boolean,
 				default: false
+			},
+			from: {
+				type: Object,
+				default: () => {}
 			}
 		},
 		data() {
@@ -74,12 +96,26 @@
 			};
 		},
 		methods: {
-			checkboxstatus(){
+			// 去登陆
+			goLogin(type) {
+				console.log("去登录");
+				this.$emit("goTologin")
+			},
+			// 点击注册账号
+			Enroll(type) {
+				this.$emit("getEnroll", type)
+			},
+			// 改变复选框状态
+			checkboxstatus() {
 				this.$emit("status")
 			},
 			// 登录
-			handleEnter() {
-				this.$emit("Enter")
+			handleEnter(from) {
+				this.$emit("Enter", from)
+			},
+			// 注册
+			regUser(from) {
+				this.$emit("setRegUser", from)
 			},
 			// wx图标
 			handlewx() {
@@ -119,6 +155,15 @@
 		border-top-right-radius: 15px;
 		padding: 31px 36px 0 36px;
 
+		.login-from {
+			position: relative;
+			margin-bottom: 26rpx;
+			background-color: #f5f5f5;
+			height: 100rpx;
+			display: flex;
+			align-items: center;
+			margin-bottom: 53rpx;
+		}
 
 		.login-button {
 			background-color: #5ccc84;

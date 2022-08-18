@@ -1,4 +1,5 @@
 // 区分环境 ,HbuilderX编辑运行时dev开发环境，发行后自动时生成环境
+import store from "@/store/index"
 let baseUrl = ''
 if (process.env.NODE_ENV === 'development') {
 	console.log('开发环境')
@@ -24,8 +25,8 @@ class Model {
 		if (!opts.method) opts.method = 'get'
 		if (opts.domain) baseUrl = opts.domain
 		// token
-		let token = ''
-		// 鉴权
+		let token =store.state.token
+		// 鉴权	
 		let authorize = ''
 		if (uni.getStorageSync('token')) token = uni.getStorageSync('token')
 		if (uni.getStorageSync('Authorization')) authorize = uni.getStorageSync('Authorization')
@@ -41,11 +42,12 @@ class Model {
 		//     }
 		//   });
 		// }
-		let header = {
-			Authorization: authorize,
+		const header = {
+			token,
 			'Content-Type': 'application/json; charset=UTF-8',
-			appid:'bd9d01ecc75dbbaaefce'
+			appid: 'bd9d01ecc75dbbaaefce',
 		}
+
 		// 删除鉴权
 		if (opts.noAuth) {
 			delete header.Authorization

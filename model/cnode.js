@@ -3,10 +3,10 @@ import Model from '@/utils/http.js'
 // const baseUrl = 'https://cnodejs.org/api/v2'
 //继承类的方法
 class Cnode extends Model {
-	constructor(baseUrl) {
-		super(baseUrl)
-		this.baseUrl = baseUrl
-	}
+	// constructor(baseUrl) {
+	// 	super(baseUrl)
+	// 	this.baseUrl = baseUrl
+	// }
 	//获取文章数据 //定义接口名
 	// get
 	// 轮播图，导航栏，最新列表
@@ -26,18 +26,6 @@ class Cnode extends Model {
 		return this.get({
 			url: '/group'
 		})
-	}
-	// 登录接口
-	login(){
-		return this.get({
-			url:'/login'
-		})
-	}
-
-	// post
-	postxxx(options) {
-		options.url = '/api/xxx'
-		return this.post(options)
 	}
 }
 const cnodeModel = new Cnode()

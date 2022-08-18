@@ -6,9 +6,11 @@ import Vue from 'vue'
 Vue.config.productionTip = false
 // 挂载navigator方法
 Vue.config.navigator = navigator
+import store from "@/store/index"
 App.mpType = 'app'
 const app = new Vue({
-	...App
+	...App,
+	store
 })
 app.$mount()
 // #endif
