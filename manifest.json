@@ -75,22 +75,18 @@
     },
     "vueVersion" : "2",
     "h5" : {
-        "title" : "Base成功之路",
+        "title" : "",
         "devServer" : {
-            "port" : 9999,
-            "https" : true
+            "port" : 7878,
+            "https" : false
         },
         "router" : {
-            "mode" : "hash",
+            "mode" : "history",
             "base" : "./"
         },
         "template" : "",
         "sdkConfigs" : {
-            "maps" : {
-                "qqmap" : {
-                    "key" : ""
-                }
-            }
+            "maps" : {}
         }
     }
 }

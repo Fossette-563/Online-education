@@ -14,8 +14,8 @@
 
 <style>
 	/*每个页面公共css */
-	@import url("@/@commcommon/iconfont/iconfont.css");
-	@import url("@/common/style/animate.min.css");
-	@import url("@/common/style/free.css");
-	@import url("@/common/style/common.css");
+	@import url("@/common/styles/free.css");
+	@import url("@/common/styles/common.css");
+	@import url("@/common/styles/animate.min.css");
+	@import url("@/common/iconfont/iconfont.css");
 </style>
